@@ -1,4 +1,4 @@
-import shal from 'shal';
+import sha1 from 'sha1';
 import { ObjectID } from 'mongodb';
 import Queue from 'bull';
 import redisClient from '../utils/redis';
@@ -27,7 +27,7 @@ class UsersController {
       if (user) {
         response.status(400).json({ error: 'Already exist' });
       } else {
-        const hashedPassword = shal(password);
+        const hashedPassword = sha1(password);
         users.insertOne(
           {
             email,
